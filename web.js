@@ -1,9 +1,12 @@
 var express = require('express');
+var fs = require('fs');
 
 var app = express.createServer(express.logger());
 
+var buffer = new Buffer();
+
 app.get('/', function(request, response) {
-  response.send('Hello World 2!');
+    response.send(buffer.write(buffer.toString(fs.readFileSync('/home/ubuntu/bitstarter/index.html')),"utf-8"));
 });
 
 var port = process.env.PORT || 5000;
